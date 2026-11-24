@@ -24,7 +24,8 @@ Content-Type: application/json
   "name": "Ali Hassan",
   "email": "ali.hassan@email.com",
   "phone": "+92 300 1234567",
-  "profilePicture": "https://randomuser.me/api/portraits/men/75.jpg"
+  "profilePicture": "https://randomuser.me/api/portraits/men/75.jpg",
+  "isProfileCompleted": true
 }
 ```
 
@@ -33,6 +34,7 @@ Field mapping:
 - `phone` → `phoneNumber`
 - `email` → `email`
 - `profilePicture` → `profilePicture`
+- `isProfileCompleted` → `isProfileCompleted`
 
 ## Successful response example
 ```json
@@ -43,6 +45,7 @@ Field mapping:
   "fullname": "Ali Hassan",
   "email": "ali.hassan@email.com",
   "phoneNumber": "+92 300 1234567",
+  "isProfileCompleted": true,
   "modifiedOn": "2026-11-23T12:30:00.000Z"
 }
 ```

@@ -5,6 +5,7 @@ export const DB_CONNECTION = {
   user: 'makaanUser',
   agency: 'makaanAgency',
   lawyer: 'makaanLawyer',
+  admin: 'makaanAdmin',
 } as const;
 
 export function isAccountType(value: string): value is AccountType {

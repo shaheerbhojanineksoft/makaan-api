@@ -43,14 +43,22 @@ export class UpdateLawyerProfileDto {
   @MaxLength(40)
   whatsapp?: string;
 
-  @ApiPropertyOptional({ example: 'https://cdn.example.com/avatar.jpg' })
+  @ApiPropertyOptional({
+    example: 'https://cdn.example.com/avatar.jpg',
+    description: 'Image URL or compressed data-URL (base64)',
+  })
   @IsOptional()
   @IsString()
-  @MaxLength(2000)
+  @MaxLength(500000)
   avatar?: string;
 
   @ApiPropertyOptional({ example: true })
   @IsOptional()
   @IsBoolean()
   registered?: boolean;
+
+  @ApiPropertyOptional({ example: true })
+  @IsOptional()
+  @IsBoolean()
+  isProfileCompleted?: boolean;
 }

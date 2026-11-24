@@ -1,6 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsArray,
+  IsBoolean,
   IsEmail,
   IsNumber,
   IsOptional,
@@ -51,22 +52,31 @@ export class UpdateAgencyProfileDto {
   @MaxLength(300)
   officeAddress?: string;
 
-  @ApiPropertyOptional({ example: 'Trusted real estate agency...' })
+  @ApiPropertyOptional({
+    example: 'Trusted real estate agency...',
+    description: 'Agency bio — 50 to 500 characters',
+  })
   @IsOptional()
   @IsString()
-  @MaxLength(4000)
+  @MaxLength(500)
   bio?: string;
 
-  @ApiPropertyOptional({ example: 'https://cdn.example.com/avatar.jpg' })
+  @ApiPropertyOptional({
+    example: 'https://cdn.example.com/avatar.jpg',
+    description: 'Image URL or compressed data-URL (base64)',
+  })
   @IsOptional()
   @IsString()
-  @MaxLength(2000)
+  @MaxLength(500000)
   profilePicture?: string;
 
-  @ApiPropertyOptional({ example: 'https://cdn.example.com/cover.jpg' })
+  @ApiPropertyOptional({
+    example: 'https://cdn.example.com/cover.jpg',
+    description: 'Image URL or compressed data-URL (base64)',
+  })
   @IsOptional()
   @IsString()
-  @MaxLength(2000)
+  @MaxLength(500000)
   coverImage?: string;
 
   @ApiPropertyOptional({ example: 'REA-12345' })
@@ -117,4 +127,9 @@ export class UpdateAgencyProfileDto {
   @IsArray()
   @IsString({ each: true })
   services?: string[];
+
+  @ApiPropertyOptional({ example: true })
+  @IsOptional()
+  @IsBoolean()
+  isProfileCompleted?: boolean;
 }

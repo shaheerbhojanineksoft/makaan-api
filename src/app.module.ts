@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { DB_CONNECTION } from './common/account-type';
 import { ProfileModule } from './profile/profile.module';
+import { SupportModule } from './support/support.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -36,9 +37,18 @@ import { UsersModule } from './users/users.module';
         uri: `${configService.get<string>('MONGODB_HOST') || 'mongodb://127.0.0.1:27017'}/makaan_lawyer`,
       }),
     }),
+    MongooseModule.forRootAsync({
+      connectionName: DB_CONNECTION.admin,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        uri: `${configService.get<string>('MONGODB_HOST') || 'mongodb://127.0.0.1:27017'}/makaan_admin`,
+      }),
+    }),
     UsersModule,
     AuthModule,
     ProfileModule,
+    SupportModule,
   ],
 })
 export class AppModule {}

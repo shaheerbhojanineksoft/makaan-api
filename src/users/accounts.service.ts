@@ -165,6 +165,9 @@ export class AccountsService {
     if (dto.profilePicture !== undefined) {
       user.profilePicture = dto.profilePicture.trim();
     }
+    if (dto.isProfileCompleted !== undefined) {
+      user.isProfileCompleted = Boolean(dto.isProfileCompleted);
+    }
     user.modifiedOn = new Date();
     await user.save();
     return this.toSafeProfile('user', user);
@@ -189,6 +192,10 @@ export class AccountsService {
     if (dto.whatsapp !== undefined) lawyer.whatsappNumber = dto.whatsapp.trim();
     if (dto.avatar !== undefined) lawyer.profilePicture = dto.avatar.trim();
     if (dto.registered !== undefined) lawyer.registered = Boolean(dto.registered);
+    if (dto.isProfileCompleted !== undefined) {
+      lawyer.isProfileCompleted = Boolean(dto.isProfileCompleted);
+      if (dto.isProfileCompleted) lawyer.registered = true;
+    }
 
     lawyer.modifiedOn = new Date();
     await lawyer.save();
@@ -240,6 +247,9 @@ export class AccountsService {
     }
     if (dto.services !== undefined) {
       agency.services = dto.services.map((item) => item.trim()).filter(Boolean);
+    }
+    if (dto.isProfileCompleted !== undefined) {
+      agency.isProfileCompleted = Boolean(dto.isProfileCompleted);
     }
 
     agency.modifiedOn = new Date();
